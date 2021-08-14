@@ -1,11 +1,6 @@
 <?php
- 
   $db = mysqli_connect("localhost", "crm_shamil_40", "R7K9Rf943Tds3", "crm_shamil_40");
-
-
   $msg = "";
-
-
   $result = mysqli_query($db, "SELECT COUNT(*) FROM `88888-jobs`");
   $closed_jobs = mysqli_query($db, "SELECT COUNT(*) FROM `88888-jobs` WHERE status='Closed'");
   $in_progress = mysqli_query($db, "SELECT COUNT(*) FROM `88888-jobs` WHERE status='Open'");
@@ -14,9 +9,7 @@
   $row1 = mysqli_fetch_array($closed_jobs);
   $row2 = mysqli_fetch_array($in_progress);
   $row3 = mysqli_fetch_array($cancelled_jobs);
-
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -64,62 +57,8 @@
         table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
 }
-
-#myInput {
-  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-  background-position: 10px 12px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
-}
-
-#myTable {
-  border-collapse: collapse; /* Collapse borders */
-  width: 100%; /* Full-width */
-  border: 1px solid #ddd; /* Add a grey border */
-  font-size: 18px; /* Increase font-size */
-}
-
-#myTable th, #myTable td {
-  text-align: left; /* Left-align text */
-  padding: 12px; /* Add padding */
-}
-
-#myTable tr {
-  /* Add a bottom border to all table rows */
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  /* Add a grey background color to the table header and on hover */
-  background-color: #f1f1f1;
-}
     </style>
     <script type="text/javascript">
-          function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("dtBasicExample");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
             $('[data-toggle="tooltip"]').DataTable();
@@ -127,13 +66,9 @@
             "searching": true // false to disable search (or any other option)
             });
             $('.dataTables_length').addClass('bs-select');
-          
-
-         
         });
     </script>
 </head>
-
 <body class="bg-light-blue">
     <div class="frame-content">
     	<input id="page_name" name="page_name" type="hidden" value="jobs">
@@ -175,11 +110,8 @@
                        <!-- <a href="create.php" class="btn btn-success pull-right">Add a New Job</a> -->
                     </div>
                     <?php
-                    // Include config file
-                    require_once "config.php";
-                    
-                    // Attempt select query execution
-                    $sql = "SELECT * FROM `88888-jobs` ";
+                    require_once "config.php"; // Include config file
+                    $sql = "SELECT * FROM `88888-jobs` "; // Attempt select query execution
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                           /*  echo " <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for jobs..'>"; */
@@ -205,23 +137,18 @@
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
+                            mysqli_free_result($result);// Free result set
                         } else{
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                     } else{
                         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
                     }
-                    // Close connection
-                    mysqli_close($link);
+                    mysqli_close($link);   // Close connection
                     ?>
-
                 </div>
             </div>        
         </div>
     </div>
-
 </body>
-
 </html>
