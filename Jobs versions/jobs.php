@@ -182,7 +182,7 @@
                     $sql = "SELECT * FROM `88888-jobs` ";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
-                            echo " <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for jobs..'>";
+                          /*  echo " <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for jobs..'>"; */
                             echo "<table id='dtBasicExample' class='table table-striped table-bordered table-sm' cellspacing='0' width='100%'>";
                                 echo "<thead>";
                                     echo "<tr>";
