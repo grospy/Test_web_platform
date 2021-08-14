@@ -37,7 +37,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <style type="text/css">
         .wrapper{
-            width: 650px;
+            width: 1200px;
             margin: 0 auto;
         }
         .page-header h2{
@@ -46,10 +46,25 @@
         table tr td:last-child a{
             margin-right: 15px;
         }
+        table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before 
+{
+  bottom: .5em;
+}
     </style>
     <script type="text/javascript">
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
+            $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
         });
     </script>
 </head>
@@ -696,14 +711,14 @@
                     $sql = "SELECT * FROM `88888-jobs` ";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
-                            echo "<table class='table table-bordered table-striped'>";
+                            echo "<table id='dtBasicExample' class='table table-striped table-bordered table-sm'>";
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>Id</th>";
                                         echo "<th>Name</th>";
                                         echo "<th>Date</th>";
                                         echo "<th>Status</th>";
-                       
+                                        echo "<th>Created by</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -713,6 +728,7 @@
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['date_created'] . "</td>";
                                         echo "<td>" . $row['status'] . "</td>";
+                                        echo "<td>" . $row['created_by'] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
